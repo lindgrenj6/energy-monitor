@@ -29,7 +29,7 @@ func main() {
 
 	log.Println("Starting server on :9394")
 	http.Handle("/metrics", http.HandlerFunc(currentMetrics))
-	http.ListenAndServe(":9394", nil)
+	log.Fatal(http.ListenAndServe(":9394", nil))
 }
 
 func currentMetrics(w http.ResponseWriter, r *http.Request) {
