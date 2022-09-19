@@ -3,6 +3,9 @@ all: build
 build:
 	go build -o energy-monitor
 
+run:
+	go run .
+
 clean:
 	go clean
 
