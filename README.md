@@ -2,6 +2,7 @@
 
 > Are you sick of the fact that the website doesn't work half the time and the app is....an app?
 
+![](https://buildpriceoption.com/wp-content/uploads/2018/11/used-car-salesman-tricks-1170x780.jpg)
 ## WELL HAVE I GOT A SOLUTION FOR YOU
 
 I coudln't tell you what model of ECU I have, all I know is:
