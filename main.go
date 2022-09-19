@@ -11,19 +11,19 @@ import (
 // probably should set up DNS for this eventually
 const metricsUrl = "http://10.0.0.11/index.php/realtimedata/old_power_graph"
 
-// data of the last scrape
-var last *RealTimeData
+// data of the current scrape
+var current *RealTimeData
 
 func main() {
 	go func() {
 		// first time populating the data
-		last = fetchMetrics()
+		current = fetchMetrics()
 
 		// once a minute, update the current metrics in-memory
 		for range time.Tick(time.Minute) {
 			log.Println("Getting metrics...")
-			last = fetchMetrics()
-			log.Printf("Got metrics, current power: %v\n", last.Power[len(last.Power)-1].EachSystemPower)
+			current = fetchMetrics()
+			log.Printf("Got metrics, current power: %v\n", current.Power[len(current.Power)-1].EachSystemPower)
 		}
 	}()
 
@@ -33,12 +33,12 @@ func main() {
 }
 
 func currentMetrics(w http.ResponseWriter, r *http.Request) {
-	if last == nil {
+	if current == nil {
 		http.Error(w, "Data not ready yet", http.StatusInternalServerError)
 		return
 	}
 
-	w.Write([]byte(last.ToMetrics()))
+	w.Write([]byte(current.ToPrometheusMetrics()))
 }
 
 // pull the data from the ECU and parse into the RealTimeData struct

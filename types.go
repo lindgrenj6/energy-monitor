@@ -34,7 +34,7 @@ type Power struct {
 
 // Generate a Prometheus-compatible metric string, including timestamps on the
 // dated data
-func (r RealTimeData) ToMetrics() string {
+func (r RealTimeData) ToPrometheusMetrics() string {
 	var b strings.Builder
 
 	b.WriteString(currentHelpText)
