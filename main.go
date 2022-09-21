@@ -22,8 +22,11 @@ func main() {
 		// once a minute, update the current metrics in-memory
 		for range time.Tick(time.Minute) {
 			log.Println("Getting metrics...")
+
 			current = fetchMetrics()
-			log.Printf("Got metrics, current power: %v\n", current.Power[len(current.Power)-1].EachSystemPower)
+			if len(current.Power) != 0 {
+				log.Printf("Got metrics, current power: %v\n", current.Power[len(current.Power)-1].EachSystemPower)
+			}
 		}
 	}()
 
